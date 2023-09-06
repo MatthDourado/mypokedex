@@ -5,37 +5,108 @@
   /*usado para condiderar a borda como o tamanho total*/
   box-sizing: border-box;
 }
+body {
+  background-color: rgb(230, 233, 235);
+}
+
+@media screen and (min-width: 992px) {
+  .content {
+    max-width: 992px;
+  }
+}
+@media screen and (max-width: 603px) {
+  .content {
+    max-width: 453px;
+  }
+}
 
 .content {
   padding: 1rem;
+  margin: 1rem auto;
+  min-width: 453px;
+  background-color: aliceblue;
+  border-radius: 1rem;
 }
 
 .content h1 {
   margin: 0%;
 }
 
-ol.pokemons {
-  /* Fará um formato de tabela*/
+.pokemons {
   display: grid;
   grid-template-columns: 1fr 1fr;
+}
+
+@media screen and (min-width: 992px) {
+  ol.pokemons {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (min-width: 603px) {
+  ol.pokemons {
+    grid-template-columns: 1fr 1fr 1fr;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  ol.pokemons {
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+}
+
+ol.pokemons {
+  /* Fará um formato de tabela*/
+
   list-style: none;
   padding: 0;
   margin: 0;
 }
 
-ol.pokemons li {
-    margin: .5rem;
-    padding: 1rem;
-    background-color: rgb(33, 139, 11);
-    border-radius: 1rem;
-    color: white;
-    display: flex;
-    flex-direction: column;
-  }
-  
-  ol.pokemons li img{
-    /* faz nunca vazar para fora */
-    max-width: 100%;
-   height: 100px;
-   align-self: flex-end;
-  }
+.pokemon {
+  margin: 0.5rem;
+  padding: 1rem;
+  background-color: rgb(33, 139, 11);
+  border-radius: 1rem;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.pokemon .number {
+  color: #000;
+  opacity: 0.3;
+  text-align: right;
+}
+
+.pokemon .name {
+  font-size: larger;
+}
+
+.pokemon .detail {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
+.pokemon .detail img {
+  /* faz nunca vazar para fora */
+  max-width: 100%;
+  align-self: flex-end;
+  height: 100px;
+}
+
+.pokemon .detail .types {
+  list-style: none;
+  padding: 0;
+}
+
+.pokemon .detail .types .type {
+  background-color: rgb(26, 63, 26);
+  padding: 0.25rem 0.5rem;
+  margin: 0.25rem 0;
+  border-radius: 1rem;
+  margin-top: 0.2rem;
+  font-size: 0.825rem;
+}
