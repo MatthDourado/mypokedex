@@ -1,4 +1,4 @@
-function convertPokemonToLi(pokemon) {
+ function convertPokemonToLi(pokemon) {
   return `
     <li class="pokemon">
     <span class="number">#387</span>
@@ -10,7 +10,7 @@ function convertPokemonToLi(pokemon) {
 
       </ol>
       <img
-        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/387.png"
+        src="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/1.png"
         alt="${pokemon.name}"
       />
     </div>
@@ -21,15 +21,13 @@ function convertPokemonToLi(pokemon) {
 
 const pokemonList = document.getElementById("pokemonList");
 
-pokeApi.getPokemons().then((pokemons) => {
-  const listItems = [];
+pokeApi.getPokemons().then((pokemons = []) => {
 
-  pokemons.map()
-  //transfoma um elemento e outro elemento,uma lista transformada
+  pokemonList.innerHTML += pokemons.map(convertPokemonToLi).join('')
   
-  for (let i = 0; i < pokemons.length; i++) {
-    const pokemon = pokemons[i];
-    listItems.push(convertPokemonToLi(pokemon));
-  }
-  console.log(listItems);
+  // mesma coisa que a função a acima
+  // const newList = pokemons.map((pokemon)=> convertPokemonToLi(pokemon))
+  // const newHtml = newList.join('')
+
+  //pegou a lista de pokemons,com o map,mapeou e converteu para uma lista de Li e depois com o join,fez as lista sempre impressas sem separador,todas juntas
 });
