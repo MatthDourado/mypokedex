@@ -19,7 +19,24 @@ ol.pokemons {
   color: white;
   display: flex;
   flex-direction: column;
+  background: url(/assets/img/poke.png);
+  background-repeat: no-repeat;
+  background-size: contain;
+  background-position-x: right;
+  background-position-y: bottom;
+  
+
 }
+
+li.pokemon{
+  transition: box-shadow 0.3s ease; /* Adiciona uma transição suave para o efeito de sombra */
+  cursor: pointer; 
+}
+li.pokemon:hover {
+  box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Adapte os valores de acordo com o efeito desejado */
+}
+
+
 
 .pokemon .number {
   color: #000;
@@ -29,6 +46,7 @@ ol.pokemons {
 
 .pokemon .name {
   font-size: larger;
+  
 }
 
 .pokemon .detail {
@@ -59,6 +77,75 @@ ol.pokemons {
   filter: brightness(1.1);
   text-align: center;
 }
+
+.pagination {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  padding: 1rem;
+}
+
+.pagination button {
+  padding: 2rem 6rem;
+  margin: .25rem 0;
+  font-size: 1.5rem;
+  color: #fff;
+  background-color: #fe1a00;
+  border:2px solid #d83526;
+  border-radius: 42px;
+  text-decoration:none;
+	text-shadow:0px 0px 0px #b23e35;
+  background-image: url(/assets/img/pokebal.svg);
+  background-size: auto;
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-position: 250px;
+ 
+}
+.pagination button:hover {
+	background:linear-gradient(to bottom, #ce0100 5%, #fe1a00 100%);
+	background-color:#ce0100;
+  background-image: url(/assets/img/pokebal.svg);
+  background-repeat: no-repeat;
+  background-position: right center;
+  background-position: 250px;
+  
+}
+.pagination button:active {
+	position:relative;
+	top:1px;
+}
+
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.7);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 60%;
+  position: relative;
+}
+
+.close {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 10px;
+  cursor: pointer;
+}
+
 /******CORES DOS TIPOS******/
 .normal {
   background-color: #a6a877;
@@ -133,21 +220,24 @@ ol.pokemons {
 }
 
 /*---------MEDIA QUERY PARA DESIGN RESPONSIVO-------------*/
-@media screen and (min-width: 992px) {
+@media screen and (min-width: 930px) {
   ol.pokemons {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr 1fr ;
   }
 }
 
-@media screen and (min-width: 603px) {
+@media screen and (max-width: 623px) {
   ol.pokemons {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: 1fr 1fr ;
   }
 }
 
-@media screen and (max-width: 480px) {
+@media screen and (max-width: 622px) {
   ol.pokemons {
     display: grid;
     grid-template-columns: 1fr;
+  }
+  .pokemon{
+    background-position: right;
   }
 }
