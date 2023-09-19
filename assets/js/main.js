@@ -1,42 +1,32 @@
 const loadMoreButton = document.getElementById("loadmore");
 const pokemonList = document.getElementById("pokemonList");
-const pokeModal = document.getElementById('pokeModal'); 
+const pokeModal = document.getElementById("pokeModal");
 
 const maxPokemons = 151;
 const limit = 9;
 let offset = 0;
 
-// pokeApi.getPokemons().then((pokemons = []) => {
-//   pokemonList.innerHTML += pokemons.map(convertPokemonToLi).join("");
-//   // mesma coisa que a função a acima
-//   // const newList = pokemons.map((pokemon)=> convertPokemonToLi(pokemon))
-//   // const newHtml = newList.join('')
-//   //pegou a lista de pokemons,com o map,mapeou e converteu para uma lista de Li e depois com o join,fez as lista sempre impressas sem separador,todas juntas
-// });
-
 function loadPokemon(offset, limit) {
   pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
-    const newHtml = pokemons
-      .map(
-        (pokemon) => `<li class="pokemon ${pokemon.type}" onclick ='testModal(${pokemon.number})' ontouch='testModal(${pokemon.number})'>
-        
-  <span class="number">#${pokemon.number}</span>
-  <span class="name">${pokemon.name}</span>
-  <div class="detail">
-    <ol class="types">
-          ${pokemon.types
-            .map((type) => `<li class="type ${type}">${type}</li>`)
-            .join("")}
+    const newHtml = pokemons.map((pokemon) => 
+    `<li class="pokemon ${pokemon.type}" onclick ='testModal(${pokemon.number})' ontouch='testModal(${pokemon.number})'>
+          <span class="number">#${pokemon.number}</span>
+          <span class="name">${pokemon.name}</span>
+          <div class="detail">
+            <ol class="types">
+                  ${pokemon.types
+                    .map((type) => `<li class="type ${type}">${type}</li>`)
+                    .join("")}
+                  
           
-  
-    </ol>
-    <img
-    
-      src="${pokemon.photo}"
-      alt="${pokemon.name}"
-    />
-  </div>
-  </li>
+            </ol>
+            <img
+            
+              src="${pokemon.photo}"
+              alt="${pokemon.name}"
+            />
+          </div>
+          </li>
   
   `
       )
@@ -44,7 +34,7 @@ function loadPokemon(offset, limit) {
     pokemonList.innerHTML += newHtml;
   });
 }
-function testModal(number){
+function testModal(number) {
   pokeApi.getPokemonMoreDetails(number).then((pokemonDetail = []) => {
     pokeModal.innerHTML = `
         <li class="pokemonOpen ${pokemonDetail.type}">
@@ -70,11 +60,11 @@ function testModal(number){
                 <div class="skills"> 
                     <span>Skills:</span>                
                     <span class="skillOpen ${pokemonDetail.type}">${
-                    pokemonDetail.skill1
-                    }</span>
+      pokemonDetail.skill1
+    }</span>
                     <span class="skillOpen ${pokemonDetail.type}">${
-                    pokemonDetail.skill2
-                    }</span>
+      pokemonDetail.skill2
+    }</span>
                 </div>
             </div>
 
@@ -133,9 +123,7 @@ loadMoreButton.addEventListener("click", () => {
     const newLimit = maxPokemons - offset;
     loadPokemon(offset, newLimit);
     loadMoreButton.parentElement.removeChild(loadMoreButton);
-  } else 
-  {
+  } else {
     loadPokemon(offset, limit);
   }
 });
-
