@@ -31,25 +31,7 @@ function convertPokeApiToPokeModel(pokeDetail) {
   return pokemon;
 }
 
-// function (pokeDetail) {
-   
-//   const pokemon = new Pokemon();
-//   pokemon.number = pokeDetail.id.toString().padStart(3,'0')
-// //   pokemon.number = pokeDetail.order;
-//   pokemon.name = pokeDetail.name;
-  
-//   const types = pokeDetail.types.map((typeSlot) => typeSlot.type.name);
-//   const [type] = types;
-//   pokemon.types = types;
-//   pokemon.type = type;
 
-//   pokemon.photo = pokeDetail.sprites.other["official-artwork"].front_default;
-
-//   pokemon.skills = pokeDetail.abilities.map((skillsSlot) => skillsSlot.ability.name);
-  
-//   pokemon.stats = 
-  
-// }
 pokeApi.getPokemonDetail = (pokemon) => {
   return fetch(pokemon.url)
     .then((response) => response.json())

@@ -8,9 +8,15 @@ let offset = 0;
 
 function loadPokemon(offset, limit) {
   pokeApi.getPokemons(offset, limit).then((pokemons = []) => {
-    const newHtml = pokemons.map((pokemon) => 
-    `<li class="pokemon ${pokemon.type}" onclick ='testModal(${pokemon.number})' ontouch='testModal(${pokemon.number})'>
-          <span class="number">#${pokemon.number}</span>
+    const newHtml = pokemons
+      .map(
+        (pokemon) =>
+          `<li class="pokemon ${pokemon.type}" onclick ='testModal(${
+            pokemon.number
+          })' ontouch='testModal(${pokemon.number})'>
+          <span class="number">#${pokemon.number
+            .toString()
+            .padStart(3, "0")}</span>
           <span class="name">${pokemon.name}</span>
           <div class="detail">
             <ol class="types">
@@ -37,76 +43,80 @@ function loadPokemon(offset, limit) {
 function testModal(number) {
   pokeApi.getPokemonMoreDetails(number).then((pokemonDetail = []) => {
     pokeModal.innerHTML = `
-        <li class="pokemonOpen ${pokemonDetail.type}">
-            <span class="nameOpen">${pokemonDetail.name}</span>
-            <div id="divCloseButton">
-                <span>#${pokemonDetail.number}</span>
-                <button class="closeButton" onclick="fecharJanela()" ontouch="fecharJanela()">X</button>
+        <li class="pokemonOpenModal ${pokemonDetail.type}">
+            
+            <div id="fecharBotão">
+                <span>#${pokemonDetail.number
+                  .toString()
+                  .padStart(3, "0")}</span>
+                <span class="nameModal">${pokemonDetail.name}</span>
+                <button class="fechar" onclick="fecharJanela()" ontouch="fecharJanela()">X</button>
             </div>
 
-            <div class="typesContainer">
-                <div class="types">
-                <span>Types:</span>
+           
+                <div class="type">
+                <span>Types:  </span>
                 ${pokemonDetail.types
-                  .map(
-                    (type) => `<span class="openType ${type}">${type}</span>`
-                  )
+                  .map((type) => `<span class="type ${type}">${type}</span>`)
                   .join("")}
                 </span>
                 </div>
-            </div>
+            
         
-            <div class="divSkills">
-                <div class="skills"> 
+            
+              
+
+            <div class="pokemonImageModal">
+                <img class="pokemonImagem" src="${pokemonDetail.photo}" 
+                alt="${pokemonDetail.name}" />
+            </div>  
+            
+            <div class="skills"> 
                     <span>Skills:</span>                
-                    <span class="skillOpen ${pokemonDetail.type}">${
+                    <span class="skillModal ${pokemonDetail.type}">${
       pokemonDetail.skill1
     }</span>
-                    <span class="skillOpen ${pokemonDetail.type}">${
+                    <span class="skillModal ${pokemonDetail.type}">${
       pokemonDetail.skill2
     }</span>
                 </div>
             </div>
 
-            <div class="pokemonImageOpenContainer">
-                <img class="pokemonImage" src="${pokemonDetail.photo}" 
-                alt="${pokemonDetail.name}" />
-            </div>
-
-            <div class="attributesContainer">
-                <h3 class="attributesHeader">Attributes:</h3>
-                <div class="attributesDiv">
-                <div class="innerAttribute">
+            <div >
+                <h3 >Attributes:</h3>
+                <div>
+                <div >
                     <span>Hp:</span>
                     <span>${pokemonDetail.statValueHp}</span>
                 </div>
 
-                <div class="innerAttribute">
+                <div >
                     <span>ATK:</span>
                     <span>${pokemonDetail.statValueAtk}</span>
                 </div>
 
-                <div class="innerAttribute">
+                <div >
                     <span>DEF:</span>
                     <span>${pokemonDetail.statValueDef}</span>
                 </div>
 
-                <div class="innerAttribute">
+                <div >
                     <span>Special-ATK:</span>
                     <span>${pokemonDetail.statValueSatk}</span>
                 </div>
 
-                <div class="innerAttribute">
+                <div >
                     <span>Special-DEF:</span>
                     <span>${pokemonDetail.statValueSdef}</span>
                 </div>
 
-                <div class="innerAttribute">
+                <div >
                     <span>Speed:</span>
                     <span>${pokemonDetail.statValueSpd}</span>
                 </div>
                 </div>
             </div>
+            
         </li>
         `;
   });
