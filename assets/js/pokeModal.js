@@ -6,7 +6,7 @@ function abriJanela() {
 function fecharJanela() {
 
   pokeModal.style.display = 'none';
-  console.log("fechou")
+
   
 };
 
