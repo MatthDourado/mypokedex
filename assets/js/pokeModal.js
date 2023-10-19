@@ -1,6 +1,4 @@
 
-
-
 function abriJanela() {
     pokeModal.style.display = 'block';
   }
